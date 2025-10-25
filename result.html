@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Audit Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    <div class="container py-4">
+      <h2>🔍 Audit Results</h2>
+
+      {% if devices %}
+      <table class="table table-striped mt-3">
+        <thead>
+          <tr>
+            <th>Device IP</th>
+            <th>Open Ports</th>
+            <th>Security Rating</th>
+            <th>Scan Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for d in devices %}
+          <tr>
+            <td>{{ d['Device IP'] }}</td>
+            <td>{{ d['Open Ports'] }}</td>
+            <td>{{ d['Security Rating'] }}</td>
+            <td>{{ d['Scan Time'] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <a href="/download/{{ file }}" class="btn btn-success">📥 Download Excel Report</a>
+      {% else %}
+      <div class="alert alert-warning">No devices found in the scanned range.</div>
+      {% endif %}
+
+      <a href="/" class="btn btn-secondary mt-3">🔁 New Scan</a>
+    </div>
+  </body>
+</html>
